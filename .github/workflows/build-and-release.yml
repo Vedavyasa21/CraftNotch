@@ -1,0 +1,68 @@
+name: Build & Release CraftNotch
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+    - name: Restore Dependencies
+      run: dotnet restore src/CraftNotch/CraftNotch.csproj
+
+    - name: Publish Standalone Binary
+      run: |
+        dotnet publish src/CraftNotch/CraftNotch.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o publish/
+        Compress-Archive -Path publish/* -DestinationPath CraftNotch-win-x64.zip
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: CraftNotch-win-x64
+        path: CraftNotch-win-x64.zip
+
+    - name: Create GitHub Release
+      if: startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main'
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || 'v1.0.0' }}
+        name: CraftNotch v1.0.0
+        body: |
+          ## 🚀 CraftNotch v1.0.0 — Desktop Notch & Dynamic Island for Windows
+          
+          ### 📥 Direct Download & Run:
+          1. Download **`CraftNotch-win-x64.zip`** from Assets below.
+          2. Extract the zip to any folder.
+          3. Double-click **`CraftNotch.exe`** to launch! (Completely self-contained, no .NET install required).
+          
+          ### 🌟 Key Features:
+          - **Dynamic Island & Hardware Notch**: Apple-style concave fillets and smooth animations.
+          - **Media Controls & Live EQ Visualizer**: GSMTC integration for Spotify, YouTube, browsers with real-time waveform bars.
+          - **Floating HUD Alerts**: Volume adjustments, microphone mute toggle, Caps Lock, Num Lock.
+          - **System Telemetry & Weather**: CPU, RAM, Battery, Ping latency, local weather & clock.
+          - **Pomodoro Timer**: Work/break focus sessions with completion chimes.
+          - **Quick File Shelf**: Interactive drag-and-drop temporary storage.
+          - **Clipboard History**: Background listener with 1-click re-copying.
+          - **AI Coding Agent Live Feed**: Telemetry & HTTP webhook (`POST /api/agent`) for Antigravity & Claude Code.
+          - **Mobile Companion Deck**: Web deck on `http://127.0.0.1:48823/` with virtual touchpad & remote controls.
+          - **Smart Fullscreen Occlusion**: Auto-slims or hides during fullscreen games.
+          - **Pixel Virtual Pet**: Vector companion with Cat, Dog, and Fox animations.
+        files: CraftNotch-win-x64.zip
+        generate_release_notes: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

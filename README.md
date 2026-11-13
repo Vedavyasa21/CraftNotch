@@ -1,6 +1,20 @@
 # CraftNotch — Dynamic Island & Desktop Notch for Windows
 
+[![Release](https://img.shields.io/github/v/release/Vedavyasa21/CraftNotch?include_prereleases&label=Latest%20Release)](https://github.com/Vedavyasa21/CraftNotch/releases/latest)
+[![Platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-blue)](https://github.com/Vedavyasa21/CraftNotch)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 An open-source desktop dynamic island and hardware notch companion for Windows 10 and Windows 11. Built with modern C# and WPF on .NET 10.
+
+---
+
+## 📥 Direct Download & Run
+
+You don't need to install .NET or build anything! A pre-compiled, self-contained standalone build is available directly on GitHub Releases:
+
+1. **[Download Latest CraftNotch (v1.0.0)](https://github.com/Vedavyasa21/CraftNotch/releases/latest)** (or directly grab [`CraftNotch-win-x64.zip`](https://github.com/Vedavyasa21/CraftNotch/releases/latest/download/CraftNotch-win-x64.zip)).
+2. Extract the ZIP archive anywhere on your PC.
+3. Double-click **`CraftNotch.exe`** to start immediately.
 
 ---
 
@@ -21,7 +35,7 @@ An open-source desktop dynamic island and hardware notch companion for Windows 1
 
 ---
 
-## Getting Started
+## Getting Started from Source
 
 ### Prerequisites
 - Windows 10 (version 19041 or higher) or Windows 11
@@ -31,7 +45,7 @@ An open-source desktop dynamic island and hardware notch companion for Windows 1
 
 ```powershell
 # Clone the repository
-git clone https://github.com/VEDANT1109/CraftNotch.git
+git clone https://github.com/Vedavyasa21/CraftNotch.git
 cd CraftNotch
 
 # Build Release binary
