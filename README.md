@@ -1,6 +1,6 @@
-# ReNotchPixel — Dynamic Island & Desktop Notch for Windows
+# Scout — Dynamic Island & Desktop Notch for Windows
 
-An open-source desktop island and hardware notch companion for Windows 10 and Windows 11. Built with modern C# and WPF on .NET 10.
+An open-source desktop dynamic island and hardware notch companion for Windows 10 and Windows 11. Built with modern C# and WPF on .NET 10.
 
 ---
 
@@ -30,14 +30,14 @@ An open-source desktop island and hardware notch companion for Windows 10 and Wi
 
 ```powershell
 # Clone the repository
-git clone https://github.com/VEDANT1109/ReNotchPixel.git
-cd ReNotchPixel
+git clone https://github.com/VEDANT1109/Scout.git
+cd Scout
 
 # Build Release binary
 dotnet build -c Release
 
 # Run the application
-dotnet run --project src/ReNotchPixel -c Release
+dotnet run --project src/Scout -c Release
 ```
 
 ---
@@ -45,8 +45,8 @@ dotnet run --project src/ReNotchPixel -c Release
 ## Architecture & Project Layout
 
 ```
-ReNotchPixel/
-├── src/ReNotchPixel/
+Scout/
+├── src/Scout/
 │   ├── Controls/
 │   │   ├── NotchGeometryHelper.cs   # Bezier fillet curves
 │   │   ├── VirtualPetControl.cs     # Animated pet companion
@@ -78,7 +78,7 @@ ReNotchPixel/
 │   └── App.xaml / .cs               # WPF application lifecycle
 ├── .gitignore
 ├── LICENSE
-├── ReNotchPixel.slnx
+├── Scout.slnx
 └── README.md
 ```
 
@@ -87,7 +87,7 @@ ReNotchPixel/
 ## Keyboard Shortcuts & Quick Actions
 
 - `Win + Alt + N`: Toggle expanded / collapsed island
-- `Right-click on System Tray Icon`: Open settings, switch shapes, or capture screenshot
+- `Right-click on System Tray Icon`: Open preferences, switch shapes, or capture screenshot
 
 ---
 
